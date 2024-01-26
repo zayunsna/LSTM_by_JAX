@@ -144,3 +144,30 @@ plt.legend()
 plt.grid()
 plt.tight_layout()
 plt.show()
+
+with open('lstm_model_params.pkl', 'rb') as model:
+    loaded_params = pickle.load(model)
+
+def predict(model, params, input_sequence):
+    predictions = model.apply(params, input_sequence)
+    return predictions
+
+test_data = df['main_feature']
+test_X, test_Y = create_sequences(test_data, sequence_length)
+model = LSTMModel(num_hidden=128, num_outputs=10)  # Example values
+forecasts = predict(model, loaded_params, test_X)
+
+prediction_times = df['datetime'].iloc[sequence_length:]
+
+flattened_predictions = forecasts.flatten()[:len(prediction_times)]
+
+plt.figure(figsize=(12, 6))
+plt.plot(df['datetime'], df['main_feature'], label='Original Data')
+plt.plot(prediction_times, flattened_predictions, label='Predictions', color='red')
+plt.xlabel('Time')
+plt.ylabel('Value')
+plt.title('Time Series Forecasting')
+plt.legend()
+plt.grid()
+plt.tight_layout()
+plt.show()
