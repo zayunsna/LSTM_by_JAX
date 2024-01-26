@@ -54,6 +54,17 @@ class LSTMModel(nn.Module):
         # Output layer
         decoded = nn.Dense(self.num_outputs)(last_output)
         return decoded
+    
+class LSTMModel_ver2(nn.Module):
+    def setup(self):
+        lstm_layer = nn.OptimizedLSTMCell()
+        self.lstm_1 = lstm_layer()
+        self.dense_1 = nn.Dense(256)
+        return
+    
+    @nn.remat
+    def __call__(self, x):
+        return
 
 def loss_fn(params, model, x, y):
     predictions = model.apply(params, x)
