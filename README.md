@@ -17,3 +17,8 @@ Epoch 9000, Loss: 0.0004633401695173234
  Training is done.
  Total execution time is 613.8410 sec.
 ```
+
+<img src="./img/lstm_jax_testForecasting.png">
+
+Loss is small enough but forecasting performance is bad.
+Needs more code implementation, tuning and study more about JAX.
