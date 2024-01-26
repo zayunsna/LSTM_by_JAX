@@ -110,7 +110,6 @@ model = LSTMModel(num_hidden=128, num_outputs=10)  # Example values
 
 params = model.init(random.PRNGKey(0), jnp.ones(input_shape))
 
-
 optimizer = optax.adam(lr)
 
 state = train_state.TrainState.create(apply_fn=model.apply, params=params, tx=optimizer)
@@ -131,6 +130,7 @@ for epoch in trange(num_epochs):
 
 print(" Training is done. ")
 print(" Total execution time is {:0.4f} sec.".format(time.time()-start_time))
+print(" Minimum Loss value : {:0.5f}".format(min(loss_values)))
 
 with open('lstm_model_params.pkl', 'wb') as model:
     pickle.dump(state.params, model)
