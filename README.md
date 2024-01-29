@@ -4,6 +4,8 @@ Build the time-series data forcating Using JAX.
 
 ```python
 # single LSTM layer
+# TODO : Multi layer structure / statful LSTM develop.
+#      : improving the computing efficiency.
 batch_size = 32
 input_dim = 1
 num_epochs = 10000
