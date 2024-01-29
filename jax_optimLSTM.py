@@ -61,3 +61,5 @@ class LSTMModel(nn.Module):
 max_features = 10000  # Maximum vocab size.
 batch_size = 128
 max_len = 50 # Sequence length to pad the outputs to.
+
+df = pd.DataFrame()
